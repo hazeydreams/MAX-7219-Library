@@ -86,6 +86,20 @@ void MAX::maxSingle( byte reg, byte col) {
   digitalWrite(load,HIGH);
 }
 
+void MAX::test(int time)
+{
+   maxSingle(1,255);
+   maxSingle(2,255);   
+   maxSingle(3,255);        
+   maxSingle(4,255);          
+   maxSingle(5,255);        
+   maxSingle(6,255);          
+   maxSingle(7,255);      
+   maxSingle(8,255);         
+        
+  delay(time);
+}
+
 void MAX::a(int time)
 {
    maxSingle(1,0);
@@ -154,4 +168,81 @@ void MAX::e(int time)
    maxSingle(8,0);  
 
    delay(time);	
+}
+
+void MAX::f(int time)
+{
+   maxSingle(1,0);
+   maxSingle(2,127);   
+   maxSingle(3,127);        
+   maxSingle(4,9);          
+   maxSingle(5,9);        
+   maxSingle(6,1);          
+   maxSingle(7,1);      
+   maxSingle(8,0);  
+
+   delay(time);	
+}
+
+void MAX::g(int time)
+{
+   maxSingle(1,0);
+   maxSingle(2,62);   
+   maxSingle(3,123);        
+   maxSingle(4,65);          
+   maxSingle(5,73);        
+   maxSingle(6,123);          
+   maxSingle(7,58);      
+   maxSingle(8,0);         
+        
+  delay(time);
+}
+
+void MAX::scrllD(int num, int time)
+{
+int bill[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+	for ( int n = 1; n <= (num*8); n++) 
+	{
+		//Just some variables
+		
+		int dill[8];
+		int b;
+		
+		b = bill[1];
+		maxSingle(b,0);
+		b = bill[2];
+		maxSingle(b,127);
+		b = bill[3];
+		maxSingle(b,127);
+		b = bill[4];
+		maxSingle(b,65);  
+		b = bill[5];
+		maxSingle(b,99);
+		b = bill[6];
+		maxSingle(b,62);
+		b = bill[7];
+		maxSingle(b,28);
+		b = bill[8];
+		maxSingle(b,0);         
+        
+		dill[1] = bill[1];
+		dill[2] = bill[2];
+		dill[3] = bill[3];
+		dill[4] = bill[4];
+		dill[5] = bill[5];
+		dill[6] = bill[6];
+		dill[7] = bill[7];
+		dill[8] = bill[8];
+		
+		bill[1] = dill[8];
+		bill[2] = dill[1];
+		bill[3] = dill[2];
+		bill[4] = dill[3];
+		bill[5] = dill[4];
+		bill[6] = dill[5];
+		bill[7] = dill[6];
+		bill[8] = dill[7];
+	
+		delay(time);
+	}
 }
