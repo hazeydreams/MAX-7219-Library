@@ -4,8 +4,6 @@ int dataIn = 2;
 int load = 3;
 int clock = 4;
 
-int dill[8] = {1, 2, 3, 4, 5, 6, 7, 8};
-
  
 int maxInUse = 4;    //change this variable to set how many MAX7219's you'll use
  
