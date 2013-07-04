@@ -15,6 +15,9 @@ public:
 		void e(int time);
 		void f(int time);
 		void g(int time);
+		void scrllA(int num, int time);
+		void scrllB(int num, int time);
+		void scrllC(int num, int time);
 		void scrllD(int num, int time);
 		
 private:

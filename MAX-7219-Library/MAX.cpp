@@ -4,6 +4,8 @@ int dataIn = 2;
 int load = 3;
 int clock = 4;
 
+int dill[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+
  
 int maxInUse = 4;    //change this variable to set how many MAX7219's you'll use
  
@@ -86,6 +88,24 @@ void MAX::maxSingle( byte reg, byte col) {
   digitalWrite(load,HIGH);
 }
 
+void rotateLeft(int *array, int n) {
+	// or
+	// take the first value
+	// move all the other left by one
+	// and then tack the first value on the end
+	// e.g. 
+	int temp = array[0]; // store first value
+	for(int i = 0; i < n-1; i++) {
+		array[i] = array[i+1]; 
+		// take value in array[1] and put in in array[0]
+		// then take value in array[2] and put in in array[1]
+		// continue
+	}
+	array[n-1] = temp; // put that first value on then end
+}
+
+
+
 void MAX::test(int time)
 {
    maxSingle(1,255);
@@ -97,6 +117,17 @@ void MAX::test(int time)
    maxSingle(7,255);      
    maxSingle(8,255);         
         
+  delay(time);
+  
+   maxSingle(1,0);
+   maxSingle(2,0);   
+   maxSingle(3,0);        
+   maxSingle(4,0);          
+   maxSingle(5,0);        
+   maxSingle(6,0);          
+   maxSingle(7,0);      
+   maxSingle(8,0); 
+  
   delay(time);
 }
 
@@ -198,51 +229,86 @@ void MAX::g(int time)
   delay(time);
 }
 
+void MAX::scrllA(int num, int time)
+{
+	int dill[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+	for ( int n = 1; n <= (num*8)+1; n++) 
+	{
+		//Displaying character based on values in dill array
+		maxSingle(dill[0],0);
+		maxSingle(dill[1],124);
+		maxSingle(dill[2],126);
+		maxSingle(dill[3],11); 
+		maxSingle(dill[4],11);
+		maxSingle(dill[5],126);
+		maxSingle(dill[6],124);
+		maxSingle(dill[7],0);
+        //Shifting vales in dill array one to the left
+		rotateLeft(dill,8);
+        
+		delay(time);
+	}
+}
+
+void MAX::scrllB(int num, int time)
+{
+	int dill[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+	for ( int n = 1; n <= (num*8)+1; n++) 
+	{
+		//Displaying character based on values in dill array
+		maxSingle(dill[0],0);
+		maxSingle(dill[1],127);
+		maxSingle(dill[2],127);
+		maxSingle(dill[3],73); 
+		maxSingle(dill[4],73);
+		maxSingle(dill[5],127);
+		maxSingle(dill[6],54);
+		maxSingle(dill[7],0);
+        //Shifting vales in dill array one to the left
+		rotateLeft(dill,8);
+        
+		delay(time);
+	}
+}
+
+void MAX::scrllC(int num, int time)
+{
+	int dill[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+	for ( int n = 1; n <= (num*8)+1; n++) 
+	{
+		//Displaying character based on values in dill array
+		maxSingle(dill[0],0);
+		maxSingle(dill[1],62);
+		maxSingle(dill[2],127);
+		maxSingle(dill[3],65); 
+		maxSingle(dill[4],65);
+		maxSingle(dill[5],99);
+		maxSingle(dill[6],34);
+		maxSingle(dill[7],0);
+        //Shifting vales in dill array one to the left
+		rotateLeft(dill,8);
+        
+		delay(time);
+	}
+}
+
 void MAX::scrllD(int num, int time)
 {
-int bill[8] = {1, 2, 3, 4, 5, 6, 7, 8};
-	for ( int n = 1; n <= (num*8); n++) 
+	int dill[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+	for ( int n = 1; n <= (num*8)+1; n++) 
 	{
-		//Just some variables
-		
-		int dill[8];
-		int b;
-		
-		b = bill[1];
-		maxSingle(b,0);
-		b = bill[2];
-		maxSingle(b,127);
-		b = bill[3];
-		maxSingle(b,127);
-		b = bill[4];
-		maxSingle(b,65);  
-		b = bill[5];
-		maxSingle(b,99);
-		b = bill[6];
-		maxSingle(b,62);
-		b = bill[7];
-		maxSingle(b,28);
-		b = bill[8];
-		maxSingle(b,0);         
+		//Displaying character based on values in dill array
+		maxSingle(dill[0],0);
+		maxSingle(dill[1],127);
+		maxSingle(dill[2],127);
+		maxSingle(dill[3],65); 
+		maxSingle(dill[4],99);
+		maxSingle(dill[5],62);
+		maxSingle(dill[6],28);
+		maxSingle(dill[7],0);
+        //Shifting vales in dill array one to the left
+		rotateLeft(dill,8);
         
-		dill[1] = bill[1];
-		dill[2] = bill[2];
-		dill[3] = bill[3];
-		dill[4] = bill[4];
-		dill[5] = bill[5];
-		dill[6] = bill[6];
-		dill[7] = bill[7];
-		dill[8] = bill[8];
-		
-		bill[1] = dill[8];
-		bill[2] = dill[1];
-		bill[3] = dill[2];
-		bill[4] = dill[3];
-		bill[5] = dill[4];
-		bill[6] = dill[5];
-		bill[7] = dill[6];
-		bill[8] = dill[7];
-	
 		delay(time);
 	}
 }
